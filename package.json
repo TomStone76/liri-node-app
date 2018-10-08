@@ -1,0 +1,27 @@
+{
+  "name": "liri-bot",
+  "version": "1.0.0",
+  "description": "This is a command line Node.js app that allows users to search for songs, concerts, and movies.",
+  "main": "keys.js",
+  "scripts": {
+    "test": "Standar"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomStone76/liri-node-app.git"
+  },
+  "keywords": [
+    "liri",
+    "Spotify",
+    "Bands",
+    "in",
+    "Town",
+    "OMDB"
+  ],
+  "author": "Tom Stone",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TomStone76/liri-node-app/issues"
+  },
+  "homepage": "https://github.com/TomStone76/liri-node-app#readme"
+}
