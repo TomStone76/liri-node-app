@@ -1,5 +1,7 @@
 // var spotify = new Spotify (keys.spotify);
 
+
+
 var request = require("request");
 var commandName = process.argv[2];
 var input = process.argv[3];
@@ -14,7 +16,7 @@ if (commandName === 'concert-this') {
 
 } else if (commandName === "spotify-this-song") {
 
-    spotifyThis();
+    spotifyThisSong();
 
 } else if (commandName === "do-what-it-says") {
 
@@ -37,7 +39,7 @@ function concertThis() {
                 console.log("Venue: " + concert.venue.name);
                 console.log("Country: " + concert.venue.country);
                 console.log("City: " + concert.venue.city);
-                console.log("Date and time: " + concert.datetime);
+                console.log("Date and time: " + moment(concert.datetime).format('MMMM Do YYYY, h:mm:ss a'));
                 console.log("");
             });
         }
@@ -66,7 +68,7 @@ function movieThis() {
     });
 }
 
-function spotifyThis() {
+function spotifyThisSong() {
 
     var song = input;
 
@@ -82,7 +84,8 @@ function spotifyThis() {
             return console.log('Error occurred: ' + err);
         }
 
-        console.log(data);
+        console.log(JSON.stringify(data, null, 2));
+        console.log(data.tracks.items);
     });
 }
 
