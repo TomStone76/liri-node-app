@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/TomStone76/liri-node-app/issues"
   },
-  "homepage": "https://github.com/TomStone76/liri-node-app#readme"
+  "homepage": "https://github.com/TomStone76/liri-node-app#readme",
+  "dependencies": {
+    "inquirer": "^6.2.0"
+  }
 }

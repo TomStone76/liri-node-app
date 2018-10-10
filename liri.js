@@ -1,3 +1,17 @@
-require("dotenv").config();
+var commandName = process.argv[2];
 
-var spotify = new Spotify(keys.spotify);
+console.log(commandName);
+
+if (commandName === 'concert-this') {
+    concertThis();
+} else if (commandName === 'movie-this') {
+    movieThis();
+}
+
+function concertThis() {
+    console.log('do concert stuff');
+}
+
+function movieThis() {
+    console.log('do movie stuff');
+}
