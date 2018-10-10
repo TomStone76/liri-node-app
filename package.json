@@ -2,7 +2,7 @@
   "name": "liri-bot",
   "version": "1.0.0",
   "description": "This is a command line Node.js app that allows users to search for songs, concerts, and movies.",
-  "main": "keys.js",
+  "main": "liri.js",
   "scripts": {
     "test": "Standar"
   },
