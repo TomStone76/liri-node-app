@@ -23,48 +23,67 @@ if (commandName === 'concert-this') {
 }
 
 function concertThis() {
-    
-    var artist = input;
-    request("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp");
 
+    var artist = input;
+    var concertQueryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
+
+    console.log(concertQueryURL);
+
+    request(concertQueryURL, function (error, response, body) {
+        if (!error && response.statusCode === 200) {
+            var concerts = JSON.parse(body);
+            concerts.forEach(function (concert) {
+                console.log("");
+                console.log("Venue: " + concert.venue.name);
+                console.log("Country: " + concert.venue.country);
+                console.log("City: " + concert.venue.city);
+                console.log("Date and time: " + concert.datetime);
+                console.log("");
+            });
+        }
+    });
 
 }
 
 function movieThis() {
+
     var movieName = input;
     var movieQueryURL = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
-    console.log(movieQueryUrl);
-    request(movieQueryUrl, function(error, response, body) {
+    request(movieQueryURL, function (error, response, body) {
         if (!error && response.statusCode === 200) {
+            console.log("");
             console.log("Title: " + JSON.parse(body).Title);
             console.log("Year: " + JSON.parse(body).Year);
-            console.log("IMDB: " + JSON.parse(body).IMDB);
-            console.log("Rotten Tomatoes: " + JSON.parse(body).Tomatoes);
+            console.log("IMDB: " + JSON.parse(body).imdbRating);
+            console.log("Rotten Tomatoes: " + JSON.parse(body).Ratings[1].Value);
             console.log("Country: " + JSON.parse(body).Country);
             console.log("Language: " + JSON.parse(body).Language);
             console.log("Plot: " + JSON.parse(body).Plot);
             console.log("Actors: " + JSON.parse(body).Actors);
+            console.log("");
         }
     });
 }
 
 function spotifyThis() {
-    var songName = input;
-    var songQueryURL = ""
 
-    console.log(songQueryUrl);
-    request(songQueryUrl, function(error, response, body) {
-        if (!error && response.statusCode === 200) {
-            console.log("Artist: " + JSON.parse(body).Artist);
-            console.log("Song Name: " + JSON.parse(body).Year);
-            console.log("Preview: " + JSON.parse(body).IMDB);
-            console.log("Album: " + JSON.parse(body).Tomatoes);
-        }
+    var song = input;
+
+    var spotifyRequire = require("node-spotify-api");
+
+    var spotifySearch = new spotifyRequire({
+        id: "cf3651e75eca4348ac1be54faa0b2bee",
+        secret: "6539bad2e7034adeaeaed6d9f20260d7"
     });
 
-    console.log("do Spotify stuff");
+    spotifySearch.search({ type: 'track', query: song }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
 
+        console.log(data);
+    });
 }
 
 function doWhatItSays() {
