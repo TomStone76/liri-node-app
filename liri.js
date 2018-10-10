@@ -13,10 +13,17 @@ if (commandName === 'concert-this') {
 }
 
 function concertThis() {
-    console.log('do concert stuff');
+    console.log("do concert stuff");
 }
 
 function movieThis() {
-    console.log('do movie stuff');
+    console.log("do movie stuff");
 }
 
+function spotifyThis() {
+    console.log("do Spotify stuff");
+}
+
+function doWhatItSays() {
+    cconsole.log("do what it says");
+}
