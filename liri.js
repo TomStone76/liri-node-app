@@ -1,7 +1,7 @@
 // var spotify = new Spotify (keys.spotify);
 
 
-
+var moment = require('moment');
 var request = require("request");
 var commandName = process.argv[2];
 var input = process.argv[3];
@@ -91,6 +91,6 @@ function spotifyThisSong() {
 
 function doWhatItSays() {
 
-    cconsole.log("do what it says");
+    console.log("do what it says");
 
 }
