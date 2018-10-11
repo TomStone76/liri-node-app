@@ -48,6 +48,12 @@ function concertThis() {
 function movieThis() {
 
     var movieName = input;
+    
+
+    if (!movieName) {
+        movieName = "Mr. Nobody";
+    }
+
     var movieQueryURL = "http://www.omdbapi.com/?t=" + movieName + "&y=&plot=short&apikey=trilogy";
 
     request(movieQueryURL, function (error, response, body) {
@@ -66,29 +72,54 @@ function movieThis() {
     });
 }
 
-// function spotifyThisSong() {
+function spotifyThisSong() {
 
-//     var song = input;
+    var song = input;
 
-//     var spotifyRequire = require("node-spotify-api");
+    var spotifyRequire = require("node-spotify-api");
 
-//     var spotifySearch = new spotifyRequire({
-//         id: "cf3651e75eca4348ac1be54faa0b2bee",
-//         secret: "6539bad2e7034adeaeaed6d9f20260d7"
-//     });
+    var spotifySearch = new spotifyRequire({
+        id: "cf3651e75eca4348ac1be54faa0b2bee",
+        secret: "6539bad2e7034adeaeaed6d9f20260d7"
+    });
 
-//     spotifySearch.search({ type: 'track', query: song }, function (err, data) {
-//         if (err) {
-//             return console.log('Error occurred: ' + err);
-//         }
-
-//         console.log(JSON.stringify(data, null, 2));
-//         console.log(data.tracks.items[0]).artists[0].name);
-// };
-// }
+    spotifySearch.search({ type: 'track', query: song }, function (err, data) {
+        if (err) {
+            return console.log('Error occurred: ' + err);
+        }
+        console.log("")
+        console.log("Artist name: " + data.tracks.items[0].artists[0].name);
+        console.log("Song name: " + data.tracks.items[0].name);
+        console.log("Preview link: " + data.tracks.items[0].href);
+        console.log("Album name: " + data.tracks.items[0].album.name);
+        console.log("");
+    });
+}
 
 function doWhatItSays() {
     fs.readFile("random.txt", "utf8", function (err, data) {
-        console.log(data);
+        var file = data.split(",");
+        console.log(file);
+        commandName = file[0];
+        input = file[1];
+
+        if (commandName === 'concert-this') {
+
+            concertThis(input);
+        
+        } else if (commandName === 'movie-this') {
+        
+            movieThis(input);
+        
+        } else if (commandName === "spotify-this-song") {
+        
+            spotifyThisSong(input);
+        
+        } else if (commandName === "do-what-it-says") {
+        
+            doWhatItSays(input);
+        
+        }
+
     });
 }
