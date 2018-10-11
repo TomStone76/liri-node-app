@@ -1,8 +1,6 @@
-// var spotify = new Spotify (keys.spotify);
-
-
 var moment = require('moment');
 var request = require("request");
+var fs = require("fs");
 var commandName = process.argv[2];
 var input = process.argv[3];
 
@@ -68,29 +66,29 @@ function movieThis() {
     });
 }
 
-function spotifyThisSong() {
+// function spotifyThisSong() {
 
-    var song = input;
+//     var song = input;
 
-    var spotifyRequire = require("node-spotify-api");
+//     var spotifyRequire = require("node-spotify-api");
 
-    var spotifySearch = new spotifyRequire({
-        id: "cf3651e75eca4348ac1be54faa0b2bee",
-        secret: "6539bad2e7034adeaeaed6d9f20260d7"
-    });
+//     var spotifySearch = new spotifyRequire({
+//         id: "cf3651e75eca4348ac1be54faa0b2bee",
+//         secret: "6539bad2e7034adeaeaed6d9f20260d7"
+//     });
 
-    spotifySearch.search({ type: 'track', query: song }, function (err, data) {
-        if (err) {
-            return console.log('Error occurred: ' + err);
-        }
+//     spotifySearch.search({ type: 'track', query: song }, function (err, data) {
+//         if (err) {
+//             return console.log('Error occurred: ' + err);
+//         }
 
-        console.log(JSON.stringify(data, null, 2));
-        console.log(data.tracks.items);
-    });
-}
+//         console.log(JSON.stringify(data, null, 2));
+//         console.log(data.tracks.items[0]).artists[0].name);
+// };
+// }
 
 function doWhatItSays() {
-
-    console.log("do what it says");
-
+    fs.readFile("random.txt", "utf8", function (err, data) {
+        console.log(data);
+    });
 }
